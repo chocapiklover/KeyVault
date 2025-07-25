@@ -1,8 +1,6 @@
 import os
 import sys
-from logic import init, add
-from logic import unlock
-from logic import lock  
+from logic import init, add, unlock, lock, list
 
 def main():
     if sys.argv[1] == "init":
@@ -14,6 +12,9 @@ def main():
 
     if sys.argv[1] == "add":
         add()
+    
+    if sys.argv[1] == "list":
+        list()
 
 
 if __name__ == "__main__":
