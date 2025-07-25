@@ -3,6 +3,7 @@ import os
 import hashlib
 import json
 from ensure_unlocked import ensure_unlocked
+from cryptography.fernet import Fernet
 
 def init():
     print(r"""
@@ -58,15 +59,21 @@ def add():
 
     with open("vault.json", "r") as f:
         data = json.load(f)
+    
+    # key is generated
+    key = Fernet.generate_key()
 
-    salt = os.urandom(16)
-    combined = str(salt) + pw
+    # value of key is assigned to a variable
+    f = Fernet(key)
 
-    hashed = hashlib.sha256(combined.encode())
-
+    # the plaintext is converted to ciphertext
+    token = f.encrypt(b"{pw}")
+    print(key, f, token)
     data["vault"][service] = {
         "username": username,
-        "pw": hashed.hexdigest()
+        "token": token,
+        "value_of_key": f,
+        "key": key
     }
 
     with open("vault.json", "w") as f:
