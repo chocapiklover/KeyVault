@@ -46,3 +46,28 @@ def init():
     with open(".lock", "w") as f:
         f.write("locked")
 
+def unlock():
+    pw = getpass.getpass("Enter your pw: ")
+
+    with open("vault.json", "r") as file:
+        vault_data = json.load(file)
+
+        hashed_from_file = vault_data["user"]["user_pw"]
+        salt_from_file = vault_data["user"]["salt"]
+
+        combined = str(salt_from_file) + pw
+        hashed = hashlib.sha256(combined.encode())
+
+        if hashed.hexdigest() == hashed_from_file:
+            print("✅ Unlock successful!")
+            os.remove(".lock")
+        else:
+            print("❌ Unlock failed.")
+
+def lock():
+    if os.path.exists(".lock"):
+        print("Vault is already locked.")
+    else:
+        with open(".lock", "w") as f:
+            f.write("locked")
+        print("🔒 Vault is now locked.")
