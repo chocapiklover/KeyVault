@@ -43,3 +43,6 @@ def init():
     with open("vault.json", "w") as file:
         json.dump(vault_data, file, indent=4)
 
+    with open(".lock", "w") as f:
+        f.write("locked")
+
