@@ -1,6 +1,6 @@
 import os
 import sys
-from logic import init, add, unlock, lock, list, get, delete
+from logic import init, add, unlock, lock, list, get, delete, update
 
 def main():
     if len(sys.argv) > 1:
@@ -30,7 +30,7 @@ def main():
         if sys.argv[1] == 'delete' and len(sys.argv) == 3:
             delete(sys.argv[2])
 
-    print("Use '--help' to see valid commands")
+    
     
 
     if sys.argv[1] == 'delete' and len(sys.argv) == 3:
@@ -48,9 +48,15 @@ def main():
           list                List all stored services
           get <service>      Retrieve credentials for a specific service
           delete <service>   Delete a specific service from the vault
+          update <service>   Update a specific service from the vault
 
         Use 'python main.py --help' to see this message.
         """)
+    if sys.argv[1] == "update" and len(sys.argv) == 3:
+        update(sys.argv[2])
+        return
+
+print("Use '--help' to see valid commands")
 
 if __name__ == "__main__":
     main()
