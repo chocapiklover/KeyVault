@@ -164,4 +164,31 @@ def get(service):
     print(f"   🔑 Password: {decoded_pw}\n")
     print("📋 You can now use your credentials. Stay safe!\n")
 
+def delete(service):
+    ensure_unlocked()
+
+    print(f"\n🔐 Searching for: **{service}** ...")
+
+    with open("vault.json", "r") as f:
+        vaultdata = json.load(f)
+        vault_service = vaultdata["vault"]
     
+    match = None
+
+    for services in vault_service:
+        if services.lower() == service.lower():
+            match = services
+            break
+
+    if not match:
+        print(f"❌ No entry found for '{service}'.")
+        return
+
+    del vaultdata["vault"][match]
+
+    with open("vault.json", "w") as f:
+        json.dump(vaultdata, f, indent=4)
+
+    print(f"✅ Successfully deleted '{service.upper()}' from your vault.")
+
+
