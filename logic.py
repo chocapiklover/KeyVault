@@ -93,6 +93,9 @@ def add():
 
 
 def unlock():
+    if not os.path.exists(".lock"):
+        print("already unlocked!")
+        exit(1)
     pw = getpass.getpass("Enter your pw: ")
 
     with open("vault.json", "r") as file:
