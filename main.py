@@ -27,12 +27,10 @@ def main():
             get(sys.argv[2])
             return 
 
+        if sys.argv[1] == 'delete' and len(sys.argv) == 3:
+            delete(sys.argv[2])
+
     print("Use '--help' to see valid commands")
-    
-
-    if sys.argv[1] == 'delete' and len(sys.argv) == 3:
-        delete(sys.argv[2])
-
 
 if __name__ == "__main__":
     main()
