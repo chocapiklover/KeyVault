@@ -5,6 +5,7 @@ import json
 from ensure_unlocked import ensure_unlocked
 from cryptography.fernet import Fernet
 import base64
+import pyperclip
 
 def init():
     if os.path.exists("vault.json"):
@@ -178,6 +179,11 @@ def get(service):
     print(f"   🔑 Password: {decoded_pw}\n")
     print("📋 You can now use your credentials. Stay safe!\n")
     print("🔒 Reminder: Run `lock` to secure your vault when you're done.\n")
+    copy_to_clipboard = input("Type 'y' to copy the password to clipboard").strip().lower()
+
+    # do we need else?
+    if copy_to_clipboard == "y":
+        pyperclip.copy(decoded_pw)
 
 
 def delete(service):

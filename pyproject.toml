@@ -6,4 +6,5 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
     "cryptography>=45.0.5",
+    "pyperclip==1.9.0",
 ]
