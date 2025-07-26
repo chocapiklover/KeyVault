@@ -171,11 +171,11 @@ def delete(service):
 
     with open("vault.json", "r") as f:
         vaultdata = json.load(f)
-        vault_service = vaultdata["vault"]
+        vault_services = vaultdata["vault"]
     
     match = None
 
-    for services in vault_service:
+    for services in vault_services:
         if services.lower() == service.lower():
             match = services
             break
