@@ -4,6 +4,7 @@ import hashlib
 import json
 from ensure_unlocked import ensure_unlocked
 from cryptography.fernet import Fernet
+import base64
 
 def init():
     print(r"""
@@ -59,21 +60,19 @@ def add():
 
     with open("vault.json", "r") as f:
         data = json.load(f)
-    
-    # key is generated
+  
     key = Fernet.generate_key()
-
-    # value of key is assigned to a variable
+    formatted_key = base64.b64encode(key).decode() 
+   
     f = Fernet(key)
 
-    # the plaintext is converted to ciphertext
-    token = f.encrypt(b"{pw}")
-    print(key, f, token)
+    token = f.encrypt(pw.encode())
+    formatted_token = base64.b64encode(token).decode() 
+
     data["vault"][service] = {
         "username": username,
-        "token": token,
-        "value_of_key": f,
-        "key": key
+        "token": formatted_token,
+        "key": formatted_key
     }
 
     with open("vault.json", "w") as f:
@@ -137,3 +136,32 @@ def list():
             print(f"🔐 {service}")
 
     print("────────────────────────\n")
+
+def get(service):
+    ensure_unlocked()
+
+    print(f"\n🔐 Retrieving credentials for service: **{service}** ...")
+
+    with open("vault.json", "r") as f:
+        data = json.load(f)
+
+    service_data = data["vault"].get(service)
+    
+    if not service_data:
+        print(f"❌ No entry found for '{service}'.")
+        return
+
+    username = service_data["username"]
+    token = base64.b64decode(service_data["token"]) 
+    key =  base64.b64decode(service_data["key"]) 
+
+    f = Fernet(key)
+    byte_pw = f.decrypt(token) 
+    decoded_pw = byte_pw.decode()
+
+    print("\n✅ Credentials successfully retrieved:\n")
+    print(f"   🧑 Username: {username}")
+    print(f"   🔑 Password: {decoded_pw}\n")
+    print("📋 You can now use your credentials. Stay safe!\n")
+
+    
