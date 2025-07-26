@@ -7,6 +7,10 @@ from cryptography.fernet import Fernet
 import base64
 
 def init():
+    if os.path.exists("vault.json"):
+        print("you already have a vault pls use unlock")
+        exit(1)
+
     print(r"""
     ██╗  ██╗███████╗██╗   ██╗██╗   ██╗ █████╗ ██╗   ██╗██╗  ████████╗
     ██║ ██╔╝██╔════╝╚██╗ ██╔╝██║   ██║██╔══██╗██║   ██║██║  ╚══██╔══╝
@@ -16,8 +20,8 @@ def init():
     ╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝   
                                                                     
 
-            🔐 Lets create your KeyVault 🔐
-    Your digital secrets. Fortified. 🔒✨
+                    🔐 Lets create your KeyVault 🔐
+                    Your digital secrets. Fortified. 🔒✨
     """)
 
     pw_1 = getpass.getpass("Enter your pw: ")
@@ -53,14 +57,19 @@ def add():
     print("\n🔐 Let's add a new service to your vault\n")
 
     service = input("🔹 Service name (e.g., GitHub, Gmail): ").strip()
+    
+    with open("vault.json", "r") as f:
+        data = json.load(f)
+    
+    if service in data["vault"]:
+        print("this service already exists")
+        exit(1)
+
     username = input("🔹 Username / Email: ").strip()
     pw = getpass.getpass("🔸 Password (input hidden): ")
 
     print("\n📂 Opening your vault...\n")
 
-    with open("vault.json", "r") as f:
-        data = json.load(f)
-  
     key = Fernet.generate_key()
     formatted_key = base64.b64encode(key).decode() 
    
@@ -79,6 +88,8 @@ def add():
         json.dump(data, f, indent=4)
 
     print(f"\n✅ Successfully added '{service.upper()}' to your vault.\n")
+    print("🔒 Reminder: Run `lock` to secure your vault when you're done.\n")
+
 
 
 def unlock():
@@ -103,8 +114,8 @@ def unlock():
             ╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝   
                                                                             
 
-                    🔐 Welcome to KeyVault 🔐
-            Your digital secrets. Fortified. 🔒✨
+                            🔐 Welcome to KeyVault 🔐
+                        Your digital secrets. Fortified. 🔒✨
             """)
             os.remove(".lock")
         else:
@@ -163,6 +174,8 @@ def get(service):
     print(f"   🧑 Username: {username}")
     print(f"   🔑 Password: {decoded_pw}\n")
     print("📋 You can now use your credentials. Stay safe!\n")
+    print("🔒 Reminder: Run `lock` to secure your vault when you're done.\n")
+
 
 def delete(service):
     ensure_unlocked()
