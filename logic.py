@@ -224,7 +224,7 @@ def update(service):
 
     if not match:
         print(f"❌ No entry found for '{service}'.")
-        return
+        exit(1)
 
     service_data = data["vault"][match]
 
@@ -253,8 +253,10 @@ def update(service):
             formatted_token = base64.b64encode(token).decode() 
 
             data["vault"][service] = {
+                "username": data["vault"][match]['username'],
                 "token": formatted_token,
                 "key": formatted_key
+                
             }
 
             with open("vault.json", "w") as f:
