@@ -3,21 +3,32 @@ import sys
 from logic import init, add, unlock, lock, list, get
 
 def main():
-    if sys.argv[1] == "init":
-        init()
-    if sys.argv[1] == "unlock":
-        unlock()
-    if sys.argv[1] == "lock":
-        lock()
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "init":
+            init()
+            return 
 
-    if sys.argv[1] == "add":
-        add()
+        if sys.argv[1] == "unlock":
+            unlock()
+            return 
+        if sys.argv[1] == "lock":
+            lock()
+            return 
+
+        if sys.argv[1] == "add":
+            add()
+            return 
+        
+        if sys.argv[1] == "list":
+            list()
+            return 
+
+        if sys.argv[1] == 'get' and len(sys.argv) == 3:
+            get(sys.argv[2])
+            return 
+
+    print("Use '--help' to see valid commands")
     
-    if sys.argv[1] == "list":
-        list()
-
-    if sys.argv[1] == 'get' and len(sys.argv) == 3:
-        get(sys.argv[2])
 
 
 if __name__ == "__main__":
