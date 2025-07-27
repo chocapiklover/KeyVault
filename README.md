@@ -1,27 +1,27 @@
-````md
-# 🔐 KeyVault  
-**Your mind forgets. KeyVault doesn’t.**  
-_The offline, terminal-first password manager with memory like a vault._
+# 🔐 KeyVault
+
+**Your mind forgets. KeyVault doesn’t.**
+*The offline, terminal-first password manager with memory like a vault.*
 
 ---
 
 ## ✨ What is this?
 
-KeyVault is a fully local, command-line password manager built with Python.  
-No cloud. No bloat. Just fast, encrypted, offline credential storage.  
+KeyVault is a fully local, command-line password manager built with Python.
+No cloud. No bloat. Just fast, encrypted, offline credential storage.
 
-We built it because we wanted something _simple, secure_, and _ours_ — a tool for people who live in the terminal and want full control over their secrets.
+We built it because we wanted something *simple, secure*, and *ours* — a tool for people who live in the terminal and want full control over their secrets.
 
 ---
 
 ## 🔑 Features
 
-- 🔐 **Per-entry Fernet encryption**
-- 🧠 **Session-based auto-lock** after inactivity
-- ✅ **Password strength validator**
-- 📋 **Add / Get / Update / Delete / List** credentials
-- 💾 **Local-first**: all data saved in JSON
-- 🧪 **Built for the terminal** — no GUI, no sync
+* 🔐 **Per-entry Fernet encryption**
+* 🧠 **Session-based auto-lock** after inactivity
+* ✅ **Password strength validator**
+* 📋 **Add / Get / Update / Delete / List** credentials
+* 💾 **Local-first**: all data saved in JSON
+* 🧪 **Built for the terminal** — no GUI, no sync
 
 ---
 
@@ -34,7 +34,7 @@ git clone https://github.com/your-username/keyvault
 cd keyvault
 uv venv
 uv pip install -r requirements.txt
-````
+```
 
 ### 2. Commands
 
@@ -102,11 +102,9 @@ Use it with care, audit the code, and don't store nuclear launch codes.
 
 ## 📦 Submission Info
 
-* **GitHub**: [
+* **GitHub**: [https://github.com/your-username/keyvault](https://github.com/chocapiklover/KeyVault)
 * **Post**: 
 * **Title**: KeyVault
 * **Description**: A fully offline password manager with session-based auto-lock and per-entry encryption. Built for the terminal.
 
-> *Made with ❤️ by \ Alex Harmuth & David Nguyen during the **Boot.dev Hackathon 2025***
-> \#bootdev #hackathon #python #cli #security
-
+> *Made with ❤️ by Alex Harmuth and David Nguyen during the **Boot.dev Hackathon 2025***
