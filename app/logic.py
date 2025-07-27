@@ -6,7 +6,7 @@ from app.ensure_unlocked import ensure_unlocked
 from cryptography.fernet import Fernet
 import base64
 import pyperclip
-from validate_pw import validate_pw
+from app.validate_pw import validate_pw
 from app.session_valid import session_valid
 import time
 from app.pw_generate import random_pw_generator
@@ -30,8 +30,8 @@ def init():
                     Your digital secrets. Fortified. 🔒✨
     """)
 
-    pw_1 = getpass.getpass("Enter your pw: ")
-    pw_confirm = getpass.getpass("Enter again pw: ")
+    pw_1 = getpass.getpass("Enter your password: ")
+    pw_confirm = getpass.getpass("Enter again password: ")
     hint = input("Enter a hint for your password (optional): ").strip()
 
     if pw_1 != pw_confirm:
@@ -110,7 +110,7 @@ def unlock(disable = None):
     if not os.path.exists(".lock"):
         print("already unlocked!")
         exit(1)
-    pw = getpass.getpass("Enter your pw: ")
+    pw = getpass.getpass("Enter your password: ")
 
     with open("vault.json", "r") as file:
         vault_data = json.load(file)
