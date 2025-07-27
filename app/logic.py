@@ -32,6 +32,7 @@ def init():
 
     pw_1 = getpass.getpass("Enter your pw: ")
     pw_confirm = getpass.getpass("Enter again pw: ")
+    hint = input("Enter a hint for your password (optional): ").strip()
 
     if pw_1 != pw_confirm:
         print("\n❌ Oops! Passwords don't match. Try again.\n")
@@ -47,7 +48,8 @@ def init():
     vault_data = {
         "user": {
             "salt": str(salt),
-            "user_pw": hashed.hexdigest()
+            "user_pw": hashed.hexdigest(),
+            "hint": hint if hint else "No hint provided"
         },
         "vault": {}  
     }
