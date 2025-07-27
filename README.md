@@ -26,15 +26,22 @@ We built it because we wanted something *simple, secure*, and *ours* — a tool 
 ---
 
 ## 🚀 Usage
+🚀 Getting Started
+To run this project locally:
 
 ### 1. Clone & install dependencies
 
 ```bash
-git clone https://github.com/your-username/keyvault
+git clone https://github.com/chocapiklover/KeyVault
 cd keyvault
 uv venv
-uv pip install -r requirements.txt
+uv pip install --all
+source .venv/bin/activate
+uv sync
 ```
+
+☝️ Make sure uv is installed globally:
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ### 2. Commands
 
@@ -53,7 +60,8 @@ Optional:
 
 ```bash
 python main.py unlock --no-autolock  # Disable auto-lock for this session
-```
+python main.py unlock --hint         # hint for master pass
+python main.py get <service> --copy  # Retrieve credentials and copy to clipboard
 
 ---
 
@@ -71,14 +79,19 @@ python main.py unlock --no-autolock  # Disable auto-lock for this session
 
 ---
 
-## 🛠️ Built With
+# 🛠️ Built With
 
-* Python 3.13
-* `cryptography.Fernet`
-* `hashlib`, `base64`, `getpass`
-* `time`, `os`, `json`
-* Terminal-first mindset
+* 🐍 Python 3.13 — cutting-edge and clean
 
+* 🔐 cryptography.Fernet — modern symmetric encryption
+
+* 🧠 hashlib, base64, getpass — for secure hashing & password handling
+
+* ⏱️ time, os, json — lightweight, file-based vault control
+
+* 🖥️ pyperclip — optional clipboard magic for smoother UX
+
+* 🧪 Terminal-first design — no GUI, just you and your vault
 ---
 
 ## 💭 Why we built it
