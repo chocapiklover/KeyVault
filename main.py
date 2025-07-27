@@ -12,7 +12,8 @@ def main():
             if len(sys.argv) == 3:
                 if sys.argv[2] == "--no-autolock":
                     disable = sys.argv[2]
-            unlock(disable)
+                    unlock(disable)
+            unlock()
             return 
         if sys.argv[1] == "lock":
             lock()
