@@ -1,6 +1,6 @@
 import os
 import sys
-from logic import init, add, unlock, lock, list, get, delete, update
+from app.logic import init, add, unlock, lock, list, get, delete, update
 
 def main():
     if len(sys.argv) > 1:

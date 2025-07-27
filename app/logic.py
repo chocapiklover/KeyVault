@@ -2,14 +2,14 @@ import getpass
 import os
 import hashlib
 import json
-from ensure_unlocked import ensure_unlocked
+from app.ensure_unlocked import ensure_unlocked
 from cryptography.fernet import Fernet
 import base64
 import pyperclip
 from validate_pw import validate_pw
-from session_valid import session_valid
+from app.session_valid import session_valid
 import time
-from pw_generate import random_pw_generator
+from app.pw_generate import random_pw_generator
 
 
 def init():

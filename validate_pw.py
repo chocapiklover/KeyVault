@@ -2,7 +2,7 @@ import re
 import getpass
 
 import pyperclip
-from pw_generate import random_pw_generator
+from app.pw_generate import random_pw_generator
 
 def contains_uppercase(pw):
     for char in pw:
