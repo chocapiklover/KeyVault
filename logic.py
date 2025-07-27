@@ -103,7 +103,7 @@ def add():
 
 
 
-def unlock():
+def unlock(disable = None):
     if not os.path.exists(".lock"):
         print("already unlocked!")
         exit(1)
@@ -120,6 +120,10 @@ def unlock():
 
     unlocked_time = time.time()
     auto_lock = True
+
+    if disable:
+        auto_lock = False
+        
     if hashed.hexdigest() == hashed_from_file:
         session = {
             "unlocked_time": unlocked_time,
