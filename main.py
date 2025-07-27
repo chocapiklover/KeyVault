@@ -26,12 +26,17 @@ def main():
         if sys.argv[1] == 'get' and len(sys.argv) == 3:
             get(sys.argv[2])
             return 
+        
+        if sys.argv[1] == 'get':
+            if len(sys.argv) >= 3:
+                copy_flag = '--copy' in sys.argv
+                get(sys.argv[2], copy=copy_flag)
+                return
+        
 
         if sys.argv[1] == 'delete' and len(sys.argv) == 3:
             delete(sys.argv[2])
-
-    
-    
+            return
 
     if sys.argv[1] == 'delete' and len(sys.argv) == 3:
         delete(sys.argv[2])
