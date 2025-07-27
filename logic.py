@@ -7,6 +7,8 @@ from cryptography.fernet import Fernet
 import base64
 import pyperclip
 from validate_pw import validate_pw
+from session_valid import session_valid
+import time
 
 
 def init():
@@ -57,6 +59,7 @@ def init():
 
 def add():
     ensure_unlocked()
+    session_valid()
     print("\n🔐 Let's add a new service to your vault\n")
 
     service = input("🔹 Service name (e.g., GitHub, Gmail): ").strip()
@@ -115,7 +118,19 @@ def unlock():
     combined = str(salt_from_file) + pw
     hashed = hashlib.sha256(combined.encode())
 
+    unlocked_time = time.time()
+    auto_lock = True
     if hashed.hexdigest() == hashed_from_file:
+        session = {
+            "unlocked_time": unlocked_time,
+            "autolock_enabled": auto_lock,
+            "autolock_timeout": 120,
+            "active": True
+        }
+
+        with open("session.json", "w") as f:
+            json.dump(session, f, indent=4)
+
         print(r"""
         ██╗  ██╗███████╗██╗   ██╗██╗   ██╗ █████╗ ██╗   ██╗██╗  ████████╗
         ██║ ██╔╝██╔════╝╚██╗ ██╔╝██║   ██║██╔══██╗██║   ██║██║  ╚══██╔══╝
@@ -144,7 +159,8 @@ def lock():
 
 def list():
     ensure_unlocked()
-    
+    session_valid()
+
     with open("vault.json", "r") as f:
         data = json.load(f)
 
@@ -161,6 +177,7 @@ def list():
 
 def get(service):
     ensure_unlocked()
+    session_valid()
 
     print(f"\n🔐 Retrieving credentials for service: **{service}** ...")
 
@@ -188,14 +205,14 @@ def get(service):
     print("🔒 Reminder: Run `lock` to secure your vault when you're done.\n")
     copy_to_clipboard = input("Type 'y' to copy the password to clipboard").strip().lower()
 
-    # do we need else?
+
     if copy_to_clipboard == "y":
         pyperclip.copy(decoded_pw)
 
 
 def delete(service):
     ensure_unlocked()
-
+    session_valid()
     print(f"\n🔐 Searching for: **{service}** ...")
 
     with open("vault.json", "r") as f:
@@ -222,6 +239,7 @@ def delete(service):
 
 def update(service):
     ensure_unlocked()
+    session_valid()
 
     option = input("What do you want to update? 1) Username 2) Password: ").strip()
 
