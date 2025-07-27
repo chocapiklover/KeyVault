@@ -13,8 +13,10 @@ def main():
                 if sys.argv[2] == "--no-autolock":
                     disable = sys.argv[2]
                     unlock(disable)
-            unlock()
-            return 
+                    return
+            else:
+                unlock()
+                return 
         if sys.argv[1] == "lock":
             lock()
             return 
@@ -36,6 +38,7 @@ def main():
                 copy_flag = '--copy' in sys.argv
                 get(sys.argv[2], copy=copy_flag)
                 return
+            return
         
 
         if sys.argv[1] == 'delete' and len(sys.argv) == 3:
@@ -59,11 +62,12 @@ def main():
 
             Use 'python main.py --help' to see this message.
             """)
+            return
         if sys.argv[1] == "update" and len(sys.argv) == 3:
             update(sys.argv[2])
             return
 
-print("Use '--help' to see valid commands")
+    print("Use '--help' to see valid commands")
 
 if __name__ == "__main__":
     main()
