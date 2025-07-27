@@ -18,4 +18,6 @@ def session_valid():
             with open("session.json", "w") as f:
                 json.dump(data, f, indent=4)
                 print("Vault auto-locked")
+                with open(".lock", "w") as f:
+                    f.write("locked")
             exit(1)

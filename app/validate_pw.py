@@ -92,6 +92,6 @@ def validate_pw(password):
             else:
                 pw = getpass.getpass("🔸 Password (input hidden): ")
                 return validate_pw(pw)
-        else:
-            print("✅ Password is strong enough.")
-            return password
+    else:
+        print("✅ Password is strong enough.")
+        return password

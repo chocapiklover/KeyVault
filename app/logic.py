@@ -95,11 +95,12 @@ def add():
     formatted_key = base64.b64encode(key).decode() 
    
     f = Fernet(key)
-
+  
     if new_pw == False:
         token = f.encrypt(pw.encode())
     else:
         token = f.encrypt(new_pw.encode())
+        
     formatted_token = base64.b64encode(token).decode() 
 
     data["vault"][service] = {
