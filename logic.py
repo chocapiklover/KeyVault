@@ -6,6 +6,8 @@ from ensure_unlocked import ensure_unlocked
 from cryptography.fernet import Fernet
 import base64
 import pyperclip
+from validate_pw import validate_pw
+
 
 def init():
     if os.path.exists("vault.json"):
@@ -69,6 +71,8 @@ def add():
     username = input("🔹 Username / Email: ").strip()
     pw = getpass.getpass("🔸 Password (input hidden): ")
 
+    new_pw = validate_pw(pw)
+
     print("\n📂 Opening your vault...\n")
 
     key = Fernet.generate_key()
@@ -76,7 +80,10 @@ def add():
    
     f = Fernet(key)
 
-    token = f.encrypt(pw.encode())
+    if new_pw == False:
+        token = f.encrypt(pw.encode())
+    else:
+        token = f.encrypt(new_pw.encode())
     formatted_token = base64.b64encode(token).decode() 
 
     data["vault"][service] = {
