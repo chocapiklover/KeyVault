@@ -175,7 +175,7 @@ def list():
 
     print("────────────────────────\n")
 
-def get(service):
+def get(service, copy=False):
     ensure_unlocked()
     session_valid()
 
@@ -198,16 +198,23 @@ def get(service):
     byte_pw = f.decrypt(token) 
     decoded_pw = byte_pw.decode()
 
+    if copy:
+        pyperclip.copy(decoded_pw)
+        print("🔑 Password copied to clipboard.")
+        return
+
     print("\n✅ Credentials successfully retrieved:\n")
     print(f"   🧑 Username: {username}")
     print(f"   🔑 Password: {decoded_pw}\n")
     print("📋 You can now use your credentials. Stay safe!\n")
     print("🔒 Reminder: Run `lock` to secure your vault when you're done.\n")
-    copy_to_clipboard = input("Type 'y' to copy the password to clipboard").strip().lower()
-
-
-    if copy_to_clipboard == "y":
-        pyperclip.copy(decoded_pw)
+    
+    if not copy:
+        copy_to_clipboard = input("Type 'y' to copy the password to clipboard: ").strip().lower()
+        if copy_to_clipboard == "y":
+            pyperclip.copy(decoded_pw)
+            print("🔑 Password copied to clipboard.")
+            return
 
 
 def delete(service):

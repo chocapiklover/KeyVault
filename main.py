@@ -26,12 +26,17 @@ def main():
         if sys.argv[1] == 'get' and len(sys.argv) == 3:
             get(sys.argv[2])
             return 
+        
+        if sys.argv[1] == 'get':
+            if len(sys.argv) >= 3:
+                copy_flag = '--copy' in sys.argv
+                get(sys.argv[2], copy=copy_flag)
+                return
+        
 
         if sys.argv[1] == 'delete' and len(sys.argv) == 3:
             delete(sys.argv[2])
-
-    
-    
+            return
 
     if sys.argv[1] == 'delete' and len(sys.argv) == 3:
         delete(sys.argv[2])
@@ -47,6 +52,7 @@ def main():
           add                 Add a new service to the vault
           list                List all stored services
           get <service>      Retrieve credentials for a specific service
+          get <service> --copy  Retrieve credentials and copy to clipboard
           delete <service>   Delete a specific service from the vault
           update <service>   Update a specific service from the vault
 
