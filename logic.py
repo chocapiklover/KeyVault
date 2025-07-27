@@ -9,6 +9,7 @@ import pyperclip
 from validate_pw import validate_pw
 from session_valid import session_valid
 import time
+from pw_generate import random_pw_generator
 
 
 def init():
