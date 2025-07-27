@@ -52,6 +52,7 @@ def main():
           add                 Add a new service to the vault
           list                List all stored services
           get <service>      Retrieve credentials for a specific service
+          get <service> --copy  Retrieve credentials and copy to clipboard
           delete <service>   Delete a specific service from the vault
           update <service>   Update a specific service from the vault
 
