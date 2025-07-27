@@ -3,3 +3,6 @@
 vault.json
 session.json
 vault.json
+.vscode/
+.gitignore
+TODO.md

@@ -30,8 +30,8 @@ def init():
                     Your digital secrets. Fortified. 🔒✨
     """)
 
-    pw_1 = getpass.getpass("Enter your password: ")
-    pw_confirm = getpass.getpass("Enter again password: ")
+    pw_1 = getpass.getpass("Create your password: ")
+    pw_confirm = getpass.getpass("Confirm your password: ")
     hint = input("Enter a hint for your password (optional): ").strip()
 
     if pw_1 != pw_confirm:
@@ -56,7 +56,17 @@ def init():
     
     with open("vault.json", "w") as file:
         json.dump(vault_data, file, indent=4)
-
+        print(r"""
+██╗   ██╗ █████╗ ██╗   ██╗██╗  ████████╗     ██████╗██████╗ ███████╗ █████╗ ████████╗███████╗██████╗ 
+██║   ██║██╔══██╗██║   ██║██║  ╚══██╔══╝    ██╔════╝██╔══██╗██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔══██╗
+██║   ██║███████║██║   ██║██║     ██║       ██║     ██████╔╝█████╗  ███████║   ██║   █████╗  ██║  ██║
+╚██╗ ██╔╝██╔══██║██║   ██║██║     ██║       ██║     ██╔══██╗██╔══╝  ██╔══██║   ██║   ██╔══╝  ██║  ██║
+ ╚████╔╝ ██║  ██║╚██████╔╝███████╗██║       ╚██████╗██║  ██║███████╗██║  ██║   ██║   ███████╗██████╔╝
+  ╚═══╝  ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝        ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═════╝ 
+                                                                                                     
+            """)
+    
+    print("\n use python main.py add to get started \n")
     with open(".lock", "w") as f:
         f.write("locked")
 
@@ -106,14 +116,19 @@ def add():
 
 
 
-def unlock(disable = None):
+def unlock(disable = None, hint=False):
     if not os.path.exists(".lock"):
         print("already unlocked!")
         exit(1)
-    pw = getpass.getpass("Enter your password: ")
 
     with open("vault.json", "r") as file:
         vault_data = json.load(file)
+
+    if hint:
+        print(f"Hint: {vault_data['user']['hint']}")
+        return
+        
+    pw = getpass.getpass("Enter your password: ")
 
     hashed_from_file = vault_data["user"]["user_pw"]
     salt_from_file = vault_data["user"]["salt"]
@@ -126,7 +141,7 @@ def unlock(disable = None):
 
     if disable:
         auto_lock = False
-        
+
     if hashed.hexdigest() == hashed_from_file:
         session = {
             "unlocked_time": unlocked_time,
