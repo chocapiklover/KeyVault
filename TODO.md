@@ -1,1 +1,3 @@
 - message for succesful vault creation
+- extend the help command/message
+- add a hint to the init
