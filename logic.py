@@ -7,6 +7,7 @@ from cryptography.fernet import Fernet
 import base64
 import pyperclip
 from validate_pw import validate_pw
+from pw_generate import random_pw_generator
 
 
 def init():
