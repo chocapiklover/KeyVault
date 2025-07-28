@@ -44,8 +44,8 @@ To run this project locally:
 git clone https://github.com/chocapiklover/KeyVault
 cd keyvault
 uv venv
-uv pip install --all
-source .venv/bin/activate
+source .venv/bin/activate (Bash/Zsh)
+source .venv/Scripts/activate  (Git Bash / WSL)
 uv sync
 ```
 
