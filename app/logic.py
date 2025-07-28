@@ -202,7 +202,7 @@ def get(service, copy=False):
     ensure_unlocked()
     session_valid()
 
-    print(f"\n🔐 Retrieving credentials for service: **{service}** ...")
+    print(f"\n🔐 Retrieving credentials for service: **{service}** ...\n")
 
     with open("vault.json", "r") as f:
         data = json.load(f)
@@ -223,6 +223,8 @@ def get(service, copy=False):
 
     if copy:
         pyperclip.copy(decoded_pw)
+        print(f"   🧑 Username: {username}")
+        print(f"   🔑 Password: {decoded_pw}\n")
         print("🔑 Password copied to clipboard.")
         return
 
@@ -259,13 +261,17 @@ def delete(service):
     if not match:
         print(f"❌ No entry found for '{service}'.")
         return
+    answer = input("Are you sure you want to delete? (y/n)")
+    if answer == "y":
+        del vaultdata["vault"][match]
 
-    del vaultdata["vault"][match]
+        with open("vault.json", "w") as f:
+            json.dump(vaultdata, f, indent=4)
 
-    with open("vault.json", "w") as f:
-        json.dump(vaultdata, f, indent=4)
-
-    print(f"✅ Successfully deleted '{service.upper()}' from your vault.")
+        print(f"✅ Successfully deleted '{service.upper()}' from your vault.")
+    else:
+        print(f"Cancelled delete")
+        exit(1)
 
 def update(service):
     ensure_unlocked()
