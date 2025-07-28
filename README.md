@@ -74,7 +74,7 @@ python main.py get <service> --copy  # Retrieve credentials and copy to clipboar
 
 ---
 
-# 🛠️ Built With
+🛠️ Built With
 
 * 🐍 Python 3.9.6
 
@@ -89,7 +89,7 @@ python main.py get <service> --copy  # Retrieve credentials and copy to clipboar
 * 🧪 Terminal-first design — no GUI, just you and your vault
 ---
 
-## 💭 Why we built it
+💭 Why we built it
 
 We wanted a password manager that felt like *ours*.
 No trackers, no login, no hidden logic — just encryption, stored locally, protected by your master password.
@@ -100,7 +100,7 @@ Every entry is encrypted individually, and sessions expire automatically.
 
 ---
 
-## ⚠️ Disclaimer
+⚠️ Disclaimer
 
 KeyVault was built in just **4 days** during the **Boot.dev Hackathon 2025**.
 It’s a working prototype, not production-grade security software.
@@ -108,7 +108,7 @@ Use it with care, audit the code, and don't store nuclear launch codes.
 
 ---
 
-## 📦 Submission Info
+📦 Submission Info
 
 * **GitHub**: [https://github.com/your-username/keyvault](https://github.com/chocapiklover/KeyVault)
 * **Post**: 
