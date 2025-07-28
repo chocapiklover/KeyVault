@@ -74,29 +74,15 @@ python main.py get <service> --copy  # Retrieve credentials and copy to clipboar
 
 ---
 
-## 🧾 Example vault entry
-
-```json
-"vault": {
-  "github": {
-    "username": "your@email.com",
-    "token": "base64_encrypted_pw",
-    "key": "base64_encoded_fernet_key"
-  }
-}
-```
-
----
-
 # 🛠️ Built With
 
-* 🐍 Python 3.13 — cutting-edge and clean
+* 🐍 Python 3.9.6
 
-* 🔐 cryptography.Fernet — modern symmetric encryption
+* 🔐 cryptography.Fernet
 
-* 🧠 hashlib, base64, getpass — for secure hashing & password handling
+* 🧠 hashlib, base64, getpass
 
-* ⏱️ time, os, json — lightweight, file-based vault control
+* ⏱️ time, os, json
 
 * 🖥️ pyperclip — optional clipboard magic for smoother UX
 
