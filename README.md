@@ -110,7 +110,7 @@ Use it with care, audit the code, and don't store nuclear launch codes.
 
 📦 Submission Info
 
-* **GitHub**: https://github.com/your-username/keyvault](https://github.com/chocapiklover/KeyVault
+* **GitHub**: https://github.com/chocapiklover/KeyVault
 * **Post**: https://x.com/QuanDNgy/status/1949761684643397763
 * **Title**: KeyVault
 * **Description**: A fully offline password manager with session-based auto-lock and per-entry encryption. Built for the terminal.
