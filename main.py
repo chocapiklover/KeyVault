@@ -52,8 +52,18 @@ def main():
         if sys.argv[1] == '--help':
             print("""
             Usage: python main.py [command] [options]
-
-            
+            Commands:
+            init                   Initialize the vault
+            unlock                 Unlock the vault
+            unlock --hint          hint for master pass
+            unlock --no-autolock   Unlock without auto-locking
+            lock                   Lock the vault
+            add                    Add a new service to the vault
+            list                   List all stored services
+            get <service>          Retrieve credentials for a specific service
+            get <service> --copy   Retrieve credentials and copy to clipboard
+            delete <service>       Delete a specific service from the vault
+            update <service>       Update a specific service from the vault
     
             Use 'python main.py --help' to see this message.
             """)
