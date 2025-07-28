@@ -91,7 +91,7 @@ python main.py get <service> --copy  # Retrieve credentials and copy to clipboar
 
 💭 Why we built it
 
-We wanted a password manager that felt like *ours*.
+We wanted a password manager that felt like ours.
 No trackers, no login, no hidden logic — just encryption, stored locally, protected by your master password.
 
 KeyVault is a project with heart.
@@ -102,7 +102,7 @@ Every entry is encrypted individually, and sessions expire automatically.
 
 ⚠️ Disclaimer
 
-KeyVault was built in just **4 days** during the **Boot.dev Hackathon 2025**.
+KeyVault was built in just 4 days during the Boot.dev Hackathon 2025.
 It’s a working prototype, not production-grade security software.
 Use it with care, audit the code, and don't store nuclear launch codes.
 
