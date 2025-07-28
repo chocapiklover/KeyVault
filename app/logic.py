@@ -66,7 +66,7 @@ def init():
                                                                                                      
             """)
     
-    print("\n use python main.py add to get started \n")
+    print("\n use 'unlock' to get started \n")
     with open(".lock", "w") as f:
         f.write("locked")
 
