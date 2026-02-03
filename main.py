@@ -1,6 +1,13 @@
 import os
 import sys
-from app.logic import init, add, unlock, lock, list, get, delete, update
+from app.commands.add import add
+from app.commands.init import init
+from app.commands.unlock import unlock
+from app.commands.lock import lock
+from app.commands.list import list
+from app.commands.get import get
+from app.commands.delete import delete
+from app.commands.update import update
 
 def main():
     if len(sys.argv) > 1:
