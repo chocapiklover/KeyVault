@@ -66,7 +66,7 @@ def validate_pw(password):
                 pw = getpass.getpass("🔸 Password (input hidden): ")
                 return validate_pw(pw)
         if option == "n":
-            return False
+            return password
             
     elif score == 3 or score == 4:
         print("aight kinda mid")

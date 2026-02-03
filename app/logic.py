@@ -221,13 +221,6 @@ def get(service, copy=False):
     byte_pw = f.decrypt(token) 
     decoded_pw = byte_pw.decode()
 
-    if copy:
-        pyperclip.copy(decoded_pw)
-        print(f"   🧑 Username: {username}")
-        print(f"   🔑 Password: {decoded_pw}\n")
-        print("🔑 Password copied to clipboard.")
-        return
-
     print("\n✅ Credentials successfully retrieved:\n")
     print(f"   🧑 Username: {username}")
     print(f"   🔑 Password: {decoded_pw}\n")
